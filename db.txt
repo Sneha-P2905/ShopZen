@@ -1,0 +1,79 @@
+CREATE DATABASE IF NOT EXISTS ecommerce_db;
+USE ecommerce_db;
+
+CREATE TABLE users (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('user','admin') NOT NULL DEFAULT 'user',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE cart (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(11) NOT NULL,
+    product_id INT(11) NOT NULL,
+    quantity INT(11) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    -- Optional: foreign key constraints (only if you're enforcing referential integrity)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+CREATE TABLE delivery_details (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(11) NOT NULL,
+    order_id INT(11) NOT NULL,
+    name VARCHAR(100),
+    address TEXT,
+    phone VARCHAR(20),
+
+    -- Optional: Add foreign keys for better relational integrity
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+
+CREATE TABLE products (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price INT(11) NOT NULL,
+    description TEXT,
+    image VARCHAR(255),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE wishlist (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(11) NOT NULL,
+    product_id INT(11) NOT NULL,
+    added_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    KEY (user_id),
+    KEY (product_id)
+);
+
+CREATE TABLE orders (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(11) NOT NULL,
+    customer_name VARCHAR(100) NOT NULL,
+    address TEXT NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    product_id INT(11) NOT NULL,
+    product_name VARCHAR(255) NOT NULL,
+    product_price INT(11) NOT NULL,
+    product_image VARCHAR(255) DEFAULT NULL,
+    quantity INT(11) NOT NULL,
+    payment_method ENUM('cod', 'card', 'upi') NOT NULL,
+    created_at DATETIME NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    status VARCHAR(50) DEFAULT 'Pending'
+);
+
+INSERT INTO products (name, price, description, image)
+VALUES
+('iPhone 14', 79999, 'Latest iPhone with A15 Bionic chip and dual camera system.', 'iphone.jpg'),
+('Nike Shoes', 5499, 'Comfortable running shoes for all-day wear.', 'shoes.jpg'),
+('Bluetooth Speaker', 2599, 'Portable Bluetooth speaker with 10-hour battery life.', 'speaker.jpg'),
+('Men\'s T-Shirt', 699, 'Cotton round-neck t-shirt available in multiple colors.', 'tshirt.jpg'),
+('Smart Watch', 2999, 'Fitness smart watch with heart rate and sleep monitoring.', 'watch.jpg')
