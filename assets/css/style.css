@@ -1,0 +1,180 @@
+/* Reset & Base */
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #1f1f1f;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff !important;
+}
+
+.navbar-nav .nav-link {
+    color: #f0f0f0 !important;
+    font-weight: 500;
+    margin-left: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffeb3b !important;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease-in-out;
+    background: #ffffff;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 220px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Buttons */
+.btn-primary, .btn-success, .btn-outline-primary, .btn-outline-danger, .btn-outline-secondary {
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary {
+    background: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-success {
+    background: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Forms */
+form input,
+form textarea,
+form select {
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    margin-bottom: 12px;
+    height: 45px;
+    width: 100%;
+    font-size: 14px;
+}
+
+form textarea {
+    height: auto;
+}
+
+form button {
+    border-radius: 25px;
+    font-weight: 600;
+    padding: 10px 20px;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* Sticky Layout */
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+.d-flex.flex-column.min-vh-100 {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(to right, #fc466b, #3f5efb);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+}
+
+/* Image preview */
+img#preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    background-color: #fff;
+}
+
+/* Responsive fix */
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 20px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .card-img-top {
+        height: 180px;
+    }
+}
